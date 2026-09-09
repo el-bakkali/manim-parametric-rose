@@ -3,7 +3,11 @@
 There is no 3D model here. No mesh file, no textures, no sculpting. The rose is a **parametric surface**: two numbers go in, a point in space comes out, and sweeping them across their ranges traces the entire bloom. Change a coefficient and the flower changes shape.
 
 <p align="center">
-  <img src="docs/preview.jpg" width="360" alt="A glowing crimson rose beneath a glass cloche, on a dark wooden base scattered with fallen petals">
+  <img src="poster.jpg" width="380" alt="Poster: a glowing rose beneath a glass cloche, under two equations describing the petal tilt and the fold that ruffles each edge">
+</p>
+
+<p align="center">
+  <img src="docs/preview.jpg" width="300" alt="A glowing crimson rose beneath a glass cloche, on a dark wooden base scattered with fallen petals">
 </p>
 
 The rendered animation is committed as [`rose.mp4`](rose.mp4) — 1080x1920, 30 fps, 8 seconds.
@@ -69,6 +73,25 @@ uv run manim -s -r 1080,1920 nylander.py NylanderRose   # the bare rose, no cloc
 ```
 
 `ROSE_U` and `ROSE_V` set the parameter grid. `ROSE_V` matters most: it controls how finely the spiral is sampled, and too low turns petal edges into visible facets.
+
+## The poster
+
+[`poster.jpg`](poster.jpg) composites a rendered still with the governing equations typeset by Manim's `MathTex`.
+
+```powershell
+.\poster.ps1
+```
+
+It renders the scene to a still first, then typesets over it, because `MathTex` needs LaTeX while the animation does not. On Windows:
+
+```powershell
+winget install --id MiKTeX.MiKTeX --exact --scope user
+initexmf --set-config-value "[MPM]AutoInstall=1"
+```
+
+The `AutoInstall` line matters: without it MiKTeX blocks on an interactive prompt the first time Manim requests a package.
+
+Keep the equations in `BLOCKS` a similar length. Only over-wide ones get scaled to fit, so mixing a short equation with a long one renders them at visibly different sizes.
 
 ## Things worth knowing if you fork this
 
