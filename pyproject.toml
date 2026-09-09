@@ -1,0 +1,8 @@
+[project]
+name = "manim-rose"
+version = "0.1.0"
+description = "Procedural enchanted rose rendered from signed distance fields with Manim Community"
+requires-python = ">=3.12,<3.15"
+dependencies = [
+    "manim==0.21.0",
+]
